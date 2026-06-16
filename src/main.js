@@ -50,9 +50,20 @@ async function handleSubmit(event) {
         totalPages = Math.ceil(data.totalHits / 15);
         if (page < totalPages) {
             showLoadMoreButton();
+        } else {
+            iziToast.info({
+                message: "You've reached the end of search results.",
+                position: 'topRight',
+                color: 'blue',
+            });
         }
     } catch (error) {
         console.error('Error fetching images:', error);
+        iziToast.error({
+            title: 'Error',
+            message: 'Something went wrong. Please try again later.',
+            position: 'topRight',
+        });
     } finally {
         hideLoader();
     }
@@ -78,7 +89,12 @@ async function handleLoadMore() {
         
     }
     catch (error) {
-            console.error('Error fetching images:', error);
+        console.error('Error fetching images:', error);
+        iziToast.error({
+            title: 'Error',
+            message: 'Something went wrong. Please try again later.',
+            position: 'topRight',
+        });
         } finally {
             hideLoader();
         }
