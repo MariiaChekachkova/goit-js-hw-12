@@ -35,8 +35,19 @@ export function createGallery(images) {
         </li>
         `;
     }).join('');
-    gallery.innerHTML = markup;
+    gallery.insertAdjacentHTML('beforeend', markup);
     lightbox.refresh(); // Refresh the lightbox to include new images
+
+}
+
+const loadMoreButton = document.querySelector('.load-more');
+
+export function showLoadMoreButton() {
+    loadMoreButton.classList.remove('is-hidden');
+}
+
+export function hideLoadMoreButton() {
+    loadMoreButton.classList.add('is-hidden');
 }
 
 
